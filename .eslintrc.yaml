@@ -1,0 +1,43 @@
+env:
+  browser: true
+  es6: true
+
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:@typescript-eslint/recommended-requiring-type-checking'
+  - 'plugin:vue/essential'
+  - 'eslint:recommended'
+  - '@vue/typescript/recommended'
+  - '@vue/prettier'
+  - '@vue/prettier/@typescript-eslint'
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+
+parserOptions:
+  parser: '@typescript-eslint/parser'
+  ecmaVersion: 2018
+  sourceType: module
+  project: ./tsconfig.json
+
+plugins:
+  - '@typescript-eslint'
+
+rules:
+  indent: [error, 2]
+  linebreak-style: [error, unix]
+  quotes: [error, single]
+  semi: [error, never]
+
+  # https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
+  '@typescript-eslint/member-delimiter-style':
+    - error
+    - { multiline: { delimiter: none } }
+
+  '@typescript-eslint/explicit-function-return-type': [error]
+  '@typescript-eslint/adjacent-overload-signatures': [error]
+  '@typescript-eslint/await-thenable': [error]
+  '@typescript-eslint/no-inferrable-types': [error]
+  '@typescript-eslint/type-annotation-spacing': [error]

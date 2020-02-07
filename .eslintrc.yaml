@@ -43,6 +43,9 @@ rules:
   '@typescript-eslint/await-thenable': [error]
   '@typescript-eslint/no-inferrable-types': [error]
   '@typescript-eslint/type-annotation-spacing': [error]
+  '@typescript-eslint/explicit-member-accessibility':
+    - error
+    - { accessibility: explicit, overrides: { constructors: no-public } }
 
   # https://github.com/benmosher/eslint-plugin-import
   'import/no-default-export': [error]
@@ -78,3 +81,8 @@ rules:
         - { target: back/src/domain, from: back/src/application }
         - { target: back/src/domain, from: back/src/infrastructure }
         - { target: back/src/infrastructure, from: back/src/application }
+
+overrides:
+  - files: ['*.vue']
+    rules:
+      'import/no-default-export': [off]

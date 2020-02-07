@@ -8,10 +8,11 @@ extends:
   - 'plugin:@typescript-eslint/recommended'
   - 'plugin:@typescript-eslint/recommended-requiring-type-checking'
   - 'plugin:vue/essential'
-  - 'eslint:recommended'
   - '@vue/typescript/recommended'
   - '@vue/prettier'
   - '@vue/prettier/@typescript-eslint'
+  - 'plugin:import/typescript'
+
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -24,6 +25,7 @@ parserOptions:
 
 plugins:
   - '@typescript-eslint'
+  - import
 
 rules:
   indent: [error, 2]
@@ -41,3 +43,38 @@ rules:
   '@typescript-eslint/await-thenable': [error]
   '@typescript-eslint/no-inferrable-types': [error]
   '@typescript-eslint/type-annotation-spacing': [error]
+
+  # https://github.com/benmosher/eslint-plugin-import
+  'import/no-default-export': [error]
+  'import/export': [error]
+  'import/no-mutable-exports': [error]
+  'import/first': [error]
+  'import/exports-last': [error]
+  'import/no-duplicates': [error]
+  'import/newline-after-import': [error]
+  'import/group-exports': [error]
+  'import/order':
+    - error
+    - newlines-between: always
+      groups:
+        - [builtin, external]
+        - [parent, sibling, index]
+      alphabetize: { order: asc, caseInsensitive: true }
+
+  'import/no-useless-path-segments':
+    - error
+    - { noUselessIndex: true }
+
+  'import/no-restricted-paths':
+    - error
+    - zones:
+        # Independent _common
+        - { target: _common, from: front }
+        - { target: _common, from: back }
+        # Independent front <=> back
+        - { target: back, from: front }
+        - { target: front, from: back }
+        # DDD
+        - { target: back/src/domain, from: back/src/application }
+        - { target: back/src/domain, from: back/src/infrastructure }
+        - { target: back/src/infrastructure, from: back/src/application }

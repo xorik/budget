@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     Navbar
-    .container
+    .container.mt-3
       router-view
 </template>
 
@@ -17,6 +17,9 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+$grid-gutter-width: 10px;
+@import '~bootswatch/dist/lumen/variables';
 @import '~bootstrap/scss/bootstrap';
+@import '~bootswatch/dist/lumen/bootswatch';
 @import 'node_modules/bootstrap-vue/src/index.scss';
 </style>

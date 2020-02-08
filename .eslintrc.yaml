@@ -38,7 +38,7 @@ rules:
     - error
     - { multiline: { delimiter: none } }
 
-  '@typescript-eslint/explicit-function-return-type': [error]
+  '@typescript-eslint/explicit-function-return-type': [warn]
   '@typescript-eslint/adjacent-overload-signatures': [error]
   '@typescript-eslint/await-thenable': [error]
   '@typescript-eslint/no-inferrable-types': [error]
@@ -57,7 +57,7 @@ rules:
   'import/newline-after-import': [error]
   'import/group-exports': [error]
   'import/order':
-    - error
+    - warn
     - newlines-between: always
       groups:
         - [builtin, external]
@@ -81,6 +81,7 @@ rules:
         - { target: back/src/domain, from: back/src/application }
         - { target: back/src/domain, from: back/src/infrastructure }
         - { target: back/src/infrastructure, from: back/src/application }
+        - { target: front/src/domain, from: front/src/application }
 
 overrides:
   - files: ['*.vue']

@@ -7,10 +7,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/about',
-    name: 'About',
+    path: '/categories',
+    name: 'categories',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+      import(/* webpackChunkName: "categories" */ '../pages/Categories.vue'),
   },
 ]
 

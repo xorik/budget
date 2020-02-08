@@ -1,4 +1,4 @@
-import { NavbarPlugin } from 'bootstrap-vue'
+import { NavbarPlugin, ModalPlugin } from 'bootstrap-vue'
 import Vue from 'vue'
 import { VNode } from 'vue/types/vnode'
 
@@ -9,6 +9,7 @@ import { router } from './application/router'
 import { store } from './application/store'
 
 Vue.use(NavbarPlugin)
+Vue.use(ModalPlugin)
 
 Vue.config.productionTip = false
 

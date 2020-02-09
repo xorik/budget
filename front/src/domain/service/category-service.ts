@@ -3,24 +3,35 @@ import { AxiosInstance } from 'axios'
 import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
 import { Category } from '../../../../_common/model/category'
 
-export class CategoryService {
-  constructor(private api: AxiosInstance) {}
+interface CategoryStorage {
+  setCategories(categories: Category[]): void
+  addCategory(category: Category): void
+  updateCategory(category: Category): void
+}
 
-  public async list(): Promise<Category[]> {
+class CategoryService {
+  constructor(
+    private readonly api: AxiosInstance,
+    private readonly storage: CategoryStorage,
+  ) {}
+
+  public async list(): Promise<void> {
     const response = await this.api.get<Category[]>('/categories')
 
-    return response.data
+    this.storage.setCategories(response.data)
   }
 
-  public async create(data: CategoryCreateDto): Promise<Category> {
+  public async create(data: CategoryCreateDto): Promise<void> {
     const response = await this.api.post<Category>('/categories', data)
 
-    return response.data
+    this.storage.addCategory(response.data)
   }
 
-  public async update(id: number, data: CategoryCreateDto): Promise<Category> {
+  public async update(id: number, data: CategoryCreateDto): Promise<void> {
     const response = await this.api.put<Category>(`/categories/${id}`, data)
 
-    return response.data
+    this.storage.updateCategory(response.data)
   }
 }
+
+export { CategoryService, CategoryStorage }

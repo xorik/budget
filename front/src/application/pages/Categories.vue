@@ -27,17 +27,17 @@ import { Vue, Component } from 'vue-property-decorator'
 import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
 import { Category } from '../../../../_common/model/category'
 import CategoryModal from '../components/CategoryModal.vue'
+import { categoryModule } from '../store'
 import { categoryService } from '../services'
 
 @Component({
   components: { CategoryModal },
 })
 export default class Categories extends Vue {
-  private categories: Category[] | null = null
   private modalItem: Category | null = null
 
-  private async created(): Promise<void> {
-    this.categories = await categoryService.list()
+  private get categories(): Category[] {
+    return categoryModule.categories
   }
 
   private openModal(category: Category | null = null): void {
@@ -45,19 +45,12 @@ export default class Categories extends Vue {
     this.$nextTick(() => this.$bvModal.show('category_modal'))
   }
 
-  private async save(data: CategoryCreateDto): Promise<void> {
+  private save(data: CategoryCreateDto): void {
     if (this.modalItem === null) {
-      this.categories?.push(await categoryService.create(data))
-      return
+      categoryService.create(data)
+    } else {
+      categoryService.update(this.modalItem.id, data)
     }
-
-    const updatedCategory = await categoryService.update(
-      this.modalItem.id,
-      data,
-    )
-
-    const i = this.categories?.findIndex(v => v.id === this.modalItem?.id) || 0
-    this.categories?.splice(i, 1, updatedCategory)
   }
 }
 </script>

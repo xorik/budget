@@ -5,6 +5,7 @@ import { VNode } from 'vue/types/vnode'
 import App from './application/App.vue'
 import './application/icons'
 import './application/registerServiceWorker'
+import './application/services'
 import { router } from './application/router'
 import { store } from './application/store'
 

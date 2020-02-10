@@ -10,8 +10,9 @@ import {
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
-import { Category } from '../../../../_common/model/category'
+import { CategoryCreateDto } from '@common/dto/category.dto'
+import { Category } from '@common/model/category'
+
 import { CategoryEntity } from '../../infrastructure/entity/category.entity'
 
 @Controller('categories')

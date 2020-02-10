@@ -63,6 +63,11 @@ rules:
         - [builtin, external]
         - [parent, sibling, index]
       alphabetize: { order: asc, caseInsensitive: true }
+      pathGroups:
+        - pattern: '@common/**'
+          group: parent
+          position: before
+      pathGroupsExcludedImportTypes: [builtin]
 
   'import/no-useless-path-segments':
     - error

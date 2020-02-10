@@ -1,6 +1,7 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
 
-import { Category } from '../../../../_common/model/category'
+import { Category } from '@common/model/category'
+
 import { CategoryStorage } from '../../domain/service/category-service'
 
 const CATEGORY_MODULE = 'category'

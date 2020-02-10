@@ -9,7 +9,12 @@
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@common/*": [
+        "../_common/*"
+      ]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

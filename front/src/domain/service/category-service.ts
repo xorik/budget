@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios'
 
-import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
-import { Category } from '../../../../_common/model/category'
+import { CategoryCreateDto } from '@common/dto/category.dto'
+import { Category } from '@common/model/category'
 
 interface CategoryStorage {
   setCategories(categories: Category[]): void

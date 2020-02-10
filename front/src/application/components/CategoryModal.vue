@@ -20,8 +20,9 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
-import { Category } from '../../../../_common/model/category'
+import { CategoryCreateDto } from '@common/dto/category.dto'
+import { Category } from '@common/model/category'
+
 import IconList from './IconList.vue'
 
 @Component({

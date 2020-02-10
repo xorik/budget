@@ -24,11 +24,12 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import { CategoryCreateDto } from '../../../../_common/dto/category.dto'
-import { Category } from '../../../../_common/model/category'
+import { CategoryCreateDto } from '@common/dto/category.dto'
+import { Category } from '@common/model/category'
+
 import CategoryModal from '../components/CategoryModal.vue'
-import { categoryModule } from '../store'
 import { categoryService } from '../services'
+import { categoryModule } from '../store'
 
 @Component({
   components: { CategoryModal },

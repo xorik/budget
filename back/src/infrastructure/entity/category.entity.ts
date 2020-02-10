@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-import { Category } from '../../../../_common/model/category'
+import { Category } from '@common/model/category'
 
 @Entity('category')
 export class CategoryEntity implements Category {

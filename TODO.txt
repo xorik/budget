@@ -1,0 +1,9 @@
+- validator on BE
+- validator on FE
+- add TS alias for common
+- categories to vuex
+
+
+
+- pwa color/icon
+- PWA reload button (with vuex)

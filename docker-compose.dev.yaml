@@ -1,0 +1,15 @@
+version: '2'
+services:
+    db_dev:
+        image: mysql:5
+        volumes:
+            - ./_data/db:/var/lib/mysql
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+            MYSQL_DATABASE: budget
+            MYSQL_USER: budget
+            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+        command: mysqld  --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        ports:
+            - "127.0.0.1:33006:3306"
+

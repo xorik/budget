@@ -12,6 +12,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "categories" */ '../pages/Categories.vue'),
   },
+  {
+    path: '/budget',
+    name: 'budget',
+    component: () =>
+      import(/* webpackChunkName: "budget" */ '../pages/Budget.vue'),
+  },
 ]
 
 const router = new VueRouter({

@@ -10,8 +10,6 @@ import {
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { Category } from '@common/model/category'
-
 import { CategoryEntity } from '../../infrastructure/entity/category.entity'
 import { CategoryCreateDto } from '../dto/category.dto'
 
@@ -23,12 +21,14 @@ export class CategoriesController {
   ) {}
 
   @Get()
-  public async getList(): Promise<Category[]> {
+  public async getList(): Promise<CategoryEntity[]> {
     return this.categoryRepository.find()
   }
 
   @Post()
-  public async add(@Body() category: CategoryCreateDto): Promise<Category> {
+  public async add(
+    @Body() category: CategoryCreateDto,
+  ): Promise<CategoryEntity> {
     return await this.categoryRepository.save(category)
   }
 
@@ -36,7 +36,7 @@ export class CategoriesController {
   public async update(
     @Param('id') id: string,
     @Body() data: CategoryCreateDto,
-  ): Promise<Category> {
+  ): Promise<CategoryEntity> {
     let category = await this.categoryRepository.findOne(parseInt(id))
 
     if (category === undefined) {

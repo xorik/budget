@@ -12,6 +12,10 @@
             fa(icon="list")
             |
             | Categories
+          b-nav-item(:to="{name: 'budget'}")
+            fa(icon="clock")
+            |
+            | Budget
 </template>
 
 <script lang="ts">

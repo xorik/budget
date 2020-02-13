@@ -6,7 +6,7 @@ import { CategoryStorage } from '../../domain/service/category-service'
 
 const CATEGORY_MODULE = 'category'
 
-@Module({ name: CATEGORY_MODULE })
+@Module({ name: CATEGORY_MODULE, namespaced: true })
 class CategoryModule extends VuexModule implements CategoryStorage {
   public categories: Category[] = []
 

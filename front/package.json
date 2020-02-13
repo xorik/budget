@@ -1,10 +1,10 @@
 {
-  "name": "front",
+  "name": "budget",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern --report",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.2",
+    "vue-dayjs-plugin": "^1.0.0",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2",

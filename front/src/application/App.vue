@@ -1,5 +1,6 @@
 <template lang="pug">
   #app
+    PWAUpdateButton
     Navbar
     .container.mt-3
       router-view
@@ -9,9 +10,10 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 import Navbar from './components/Navbar'
+import PWAUpdateButton from './components/PWAUpdateButton'
 
 @Component({
-  components: { Navbar },
+  components: { Navbar, PWAUpdateButton },
 })
 export default class App extends Vue {}
 </script>

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-
 import { NavbarPlugin, ModalPlugin } from 'bootstrap-vue'
 import Vue from 'vue'
 // @ts-ignore

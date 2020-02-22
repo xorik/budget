@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 
       setInterval(() => {
         registration.update()
-      }, 1000 * 60 * 10) // Check every 10 mins
+      }, 1000 * 60 * 60) // Check every hour
     },
     cached() {
       console.log('Content has been cached for offline use.')

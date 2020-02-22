@@ -6,8 +6,7 @@
       button.btn.btn-outline-primary.rounded-pill.float-right(@click="openModal()")
         fa(icon="plus")
 
-    i.text-muted(v-if="categories === null") Loading...
-    i.text-muted.my-5(v-else-if="categories.length === 0") No categories
+    i.text-muted.my-5(v-if="categories.length === 0") No categories
 
     .d-flex.d-flex-row.justify-content-between.align-items-center.my-3(v-else v-for="category in categories")
       fa.text-secondary(:icon="category.icon" fixed-width size="2x")

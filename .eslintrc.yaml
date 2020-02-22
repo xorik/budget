@@ -46,6 +46,7 @@ rules:
   '@typescript-eslint/explicit-member-accessibility':
     - error
     - { accessibility: explicit, overrides: { constructors: no-public } }
+  '@typescript-eslint/ban-ts-ignore': [off]
 
   # https://github.com/benmosher/eslint-plugin-import
   'import/no-default-export': [error]

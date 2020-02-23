@@ -19,6 +19,10 @@ export default class PWAUpdateButton extends Vue {
   private registration: any = null
 
   private created(): void {
+    if (navigator.serviceWorker === undefined) {
+      return
+    }
+
     document.addEventListener('swUpdated', this.showRefreshUI.bind(this), {
       once: true,
     })

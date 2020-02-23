@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "lint": "eslint --ext ts,vue _common/ back/src/ front/src/ -c .eslintrc.yaml"
+    "lint": "eslint --ext ts,vue ../_common/ ../back/src/ ../front/src/ -c .eslintrc.yaml"
   },
   "license": "MIT",
   "devDependencies": {

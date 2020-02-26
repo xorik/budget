@@ -7,6 +7,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'stat',
+    component: () => import(/* webpackChunkName: "stat" */ '../pages/Stat.vue'),
+  },
+  {
     path: '/categories',
     name: 'categories',
     component: () =>

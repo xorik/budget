@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import dayjs from 'dayjs'
 import { Vue, Component, Watch } from 'vue-property-decorator'
 
 import { Category } from '@common/model/category'
@@ -37,7 +38,7 @@ interface Form {
 export default class AddTransaction extends Vue {
   private form = {
     categoryId: 0,
-    date: '2020-02-01',
+    date: dayjs().format('YYYY-MM-DD'),
     amount: null,
   }
 
@@ -47,15 +48,17 @@ export default class AddTransaction extends Vue {
 
   @Watch('categories', { immediate: true })
   private updateCategory(): void {
+    // Select the first category
     if (this.categories.length > 0) {
       this.form.categoryId = this.categories[0].id
     }
   }
 
-  private save(): void {
+  private async save(): Promise<void> {
     const { categoryId, date, amount } = this.form
     // TODO: validation
-    transactionService.create({ amount: amount || 0, categoryId, date })
+    await transactionService.create({ amount: amount || 0, categoryId, date })
+    this.form.amount = null
   }
 }
 </script>

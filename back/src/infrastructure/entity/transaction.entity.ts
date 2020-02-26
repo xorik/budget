@@ -18,6 +18,6 @@ export class TransactionEntity implements Transaction {
   @Column({ type: 'timestamp' })
   public date: Date
 
-  @Column()
+  @Column({ type: 'decimal', precision: 7, scale: 2 })
   public amount: number
 }

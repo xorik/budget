@@ -11,7 +11,7 @@
 
     .form-group
       label Icon
-      button(type="button").btn.btn-outline-primary.mx-2(@click="showList = !showList")
+      button.btn.btn-outline-primary.mx-2(type="button" @click="showList = !showList")
         fa(:icon="icon" size="lg" fixed-width)
 
     IconList(v-if="showList" @select="icon = $event; showList = false")

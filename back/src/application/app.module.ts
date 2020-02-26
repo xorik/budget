@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { CategoryEntity } from '../infrastructure/entity/category.entity'
 import { IntervalEntity } from '../infrastructure/entity/interval.entity'
-import { TransactionEntity } from '../infrastructure/entity/transaction.entity'
+import { TransactionRepository } from '../infrastructure/repository/transaction.repository'
 import { CategoriesController } from './controller/categories.controller'
 import { IntervalController } from './controller/interval.controller'
+import { StatController } from './controller/stat.controller'
 import { TransactionController } from './controller/transaction.controller'
 
 @Module({
@@ -14,13 +15,14 @@ import { TransactionController } from './controller/transaction.controller'
     TypeOrmModule.forFeature([
       CategoryEntity,
       IntervalEntity,
-      TransactionEntity,
+      TransactionRepository,
     ]),
   ],
   controllers: [
     CategoriesController,
     IntervalController,
     TransactionController,
+    StatController,
   ],
   providers: [],
 })

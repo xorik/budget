@@ -13,7 +13,8 @@
 
     .form-group
       label Amount
-      input.form-control(type="number" v-model.number="form.amount")
+      CalcInput(@input="form.amount = $event")
+      pre {{ form.amount }}
 
     .text-right
       button.btn.btn-outline-primary(@click="save") Add
@@ -27,6 +28,7 @@ import { Category } from '@common/model/category'
 
 import { transactionService } from '../services'
 import { categoryModule } from '../store'
+import CalcInput from './CalcInput.vue'
 
 interface Form {
   categoryId: number
@@ -34,7 +36,7 @@ interface Form {
   amount: number | null
 }
 
-@Component
+@Component({ components: { CalcInput } })
 export default class AddTransaction extends Vue {
   private form = {
     categoryId: 0,

@@ -13,7 +13,7 @@
 
     .form-group
       label Amount
-      CalcInput(@input="form.amount = $event")
+      CalcInput(v-model="form.amount")
       pre {{ form.amount }}
 
     .text-right

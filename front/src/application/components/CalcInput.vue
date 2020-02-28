@@ -4,10 +4,15 @@
 
 <script lang="ts">
 import { Parser } from 'expr-eval'
-import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Vue, Component, Watch, Prop } from 'vue-property-decorator'
 
 @Component
 export default class CalcInput extends Vue {
+  @Prop({
+    required: true,
+  })
+  private value!: number | null
+
   private expr = ''
 
   @Watch('expr')
@@ -16,7 +21,14 @@ export default class CalcInput extends Vue {
       const value = Parser.parse(this.expr).evaluate()
       this.$emit('input', value)
     } catch (e) {
-      this.$emit('input', null)
+      this.$emit('input', '')
+    }
+  }
+
+  @Watch('value')
+  private onReset(): void {
+    if (this.value === null) {
+      this.expr = ''
     }
   }
 }

@@ -6,7 +6,7 @@
         |
         | {{ title }}
       h5.col.col-auto.mb-0.text-right {{ current }}€
-    .row.align-items-center
+    .row.align-items-center(v-if="showProgress")
       .col.col-10
         Progress(:value="percent" :current="pos" :bg="bg")
       .col.text-right.text-muted {{ total }}€
@@ -36,6 +36,9 @@ export default class BudgetProgress extends Vue {
 
   @Prop({ type: String, required: false, default: null })
   private icon!: string | null
+
+  @Prop({ required: false, default: true })
+  private showProgress!: boolean
 
   private get percent(): number {
     if (this.total === 0) {

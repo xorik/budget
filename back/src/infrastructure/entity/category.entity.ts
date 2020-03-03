@@ -12,4 +12,7 @@ export class CategoryEntity implements Category {
 
   @Column({ length: 100 })
   public icon: string
+
+  @Column()
+  public showProgress: boolean
 }

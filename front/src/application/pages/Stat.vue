@@ -19,29 +19,28 @@
       :current="item.current"
       :total="item.total"
       :pos="progress"
+      :showProgress="item.category.showProgress"
     )
-
-    AddTransaction
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import AddTransaction from '../components/AddTransaction.vue'
 import BudgetProgress from '../components/BudgetProgress.vue'
 import { intervalModule, statModule } from '../store'
 import { IntervalItem } from '../store/StatModule'
 
-@Component({ components: { BudgetProgress, AddTransaction } })
+@Component({ components: { BudgetProgress } })
 export default class Stat extends Vue {
   private get items(): IntervalItem[] {
     return statModule.items
   }
 
   private get total(): object {
+    const progressItems = this.items.filter(x => x.category.showProgress)
     return {
-      current: Math.round(this.items.reduce((sum, x) => x.current + sum, 0)),
-      total: this.items.reduce((sum, x) => x.total + sum, 0),
+      current: Math.round(progressItems.reduce((sum, x) => x.current + sum, 0)),
+      total: progressItems.reduce((sum, x) => x.total + sum, 0),
     }
   }
 

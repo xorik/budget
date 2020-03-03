@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator'
+import { IsBoolean, IsNotEmpty } from 'class-validator'
 
 import { CategoryCreateDto as CategoryCreateDtoInterface } from '@common/dto/category.dto'
 
@@ -7,4 +7,6 @@ export class CategoryCreateDto implements CategoryCreateDtoInterface {
   public title: string
   @IsNotEmpty()
   public icon: string
+  @IsBoolean()
+  public showProgress: boolean
 }

@@ -1,11 +1,13 @@
 <template lang="pug">
   div
     .row
-      h5.col.mb-0.text-secondary
-        fa.text-muted(v-if="icon" :icon="icon" fixed-width)
-        |
-        | {{ title }}
-      h5.col.col-auto.mb-0.text-right {{ current }}€
+      h5.col.mb-0
+        fa.text-muted(v-if="icon && !done" :icon="icon" fixed-width)
+        fa-layers(v-else-if="icon && done" fixed-width)
+          fa.text-muted(:icon="icon")
+          fa(icon="check" transform="grow-7")
+        span.ml-2(:class="textClass") {{ title }}
+      h5.col.col-auto.mb-0.text-right(:class="textClass") {{ current }}€
     .row.align-items-center(v-if="showProgress")
       .col.col-10
         Progress(:value="percent" :current="pos" :bg="bg")
@@ -39,6 +41,14 @@ export default class BudgetProgress extends Vue {
 
   @Prop({ required: false, default: true })
   private showProgress!: boolean
+
+  private get done(): boolean {
+    return !this.showProgress && this.percent > 90
+  }
+
+  private get textClass(): string {
+    return this.done ? 'text-muted' : 'text-secondary'
+  }
 
   private get percent(): number {
     if (this.total === 0) {

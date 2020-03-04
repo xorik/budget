@@ -21,16 +21,21 @@
       :pos="progress"
       :showProgress="item.category.showProgress"
     )
+
+    AddTransactionButton
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
+import AddTransactionButton from '../components/AddTransactionButton.vue'
 import BudgetProgress from '../components/BudgetProgress.vue'
 import { intervalModule, statModule } from '../store'
 import { IntervalItem } from '../store/StatModule'
 
-@Component({ components: { BudgetProgress } })
+@Component({
+  components: { AddTransactionButton, BudgetProgress },
+})
 export default class Stat extends Vue {
   private get items(): IntervalItem[] {
     return statModule.items

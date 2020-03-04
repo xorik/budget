@@ -1,23 +1,23 @@
 <template lang="pug">
   div
-    h5 Add transaction
+    b-modal#add_transaction_modal(
+      title="Add transaction"
+      ok-title="add"
+      @ok="save"
+    )
+      .form-group
+        label Category
+        select.custom-select(v-model="form.categoryId")
+          option(v-for="c in categories" :value="c.id") {{ c.title }}
 
-    .form-group
-      label Category
-      select.custom-select(v-model="form.categoryId")
-        option(v-for="c in categories" :value="c.id") {{ c.title }}
+      .form-group
+        label Date
+        input.form-control(type="date" v-model="form.date")
 
-    .form-group
-      label Date
-      input.form-control(type="date" v-model="form.date")
-
-    .form-group
-      label Amount
-      CalcInput(v-model="form.amount")
-      pre {{ form.amount }}
-
-    .text-right
-      button.btn.btn-outline-primary(@click="save") Add
+      .form-group
+        label Amount
+        CalcInput(v-model="form.amount")
+        pre {{ form.amount }}
 </template>
 
 <script lang="ts">

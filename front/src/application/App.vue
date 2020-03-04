@@ -3,7 +3,7 @@
     PWAUpdateButton
     Navbar
     .container.mt-3
-      router-view
+      router-view.pb-5
 </template>
 
 <script>

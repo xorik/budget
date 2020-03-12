@@ -32,13 +32,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import AddTransactionButton from '../components/AddTransactionButton.vue'
 import BudgetProgress from '../components/BudgetProgress.vue'
 import { intervalModule, statModule } from '../store'
-import { IntervalItem } from '../store/StatModule'
+import { StatItem } from '../store/StatModule'
 
 @Component({
   components: { AddTransactionButton, BudgetProgress },
 })
 export default class Stat extends Vue {
-  private get items(): IntervalItem[] {
+  private get items(): StatItem[] {
     return statModule.items
   }
 

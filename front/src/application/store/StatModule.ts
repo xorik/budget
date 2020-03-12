@@ -9,10 +9,11 @@ import { StatStorage } from '../../domain/service/stat-service'
 
 const STAT_MODULE = 'stat'
 
-interface IntervalItem {
+interface StatItem {
   category: Category
   current: number
   total: number
+  done: boolean
 }
 
 @Module({ name: STAT_MODULE, namespaced: true })
@@ -39,7 +40,7 @@ class StatModule extends VuexModule implements StatStorage {
     }
   }
 
-  public get items(): IntervalItem[] {
+  public get items(): StatItem[] {
     if (
       intervalModule.current === null ||
       categoryModule.categories.length === 0
@@ -47,19 +48,33 @@ class StatModule extends VuexModule implements StatStorage {
       return []
     }
 
-    return categoryModule.categories.map(category => {
-      const budget = intervalModule.current?.budget.find(
-        x => x.categoryId === category.id,
-      )
-      const stat = this.stat.find(x => x.categoryId === category.id)
+    return categoryModule.categories
+      .map(category => {
+        const budget = intervalModule.current?.budget.find(
+          x => x.categoryId === category.id,
+        )
+        const stat = this.stat.find(x => x.categoryId === category.id)
+        const total = budget ? budget.amount : 0
+        // TODO: move round to the UI
+        const current = stat ? Math.round(stat.sum) : 0
+        const percent = total === 0 ? 0 : current / total
 
-      return {
-        category,
-        total: budget ? budget.amount : 0,
-        current: stat ? Math.round(stat.sum) : 0,
-      }
-    })
+        return {
+          category,
+          total,
+          current,
+          done: !category.showProgress && percent > 0.9,
+        }
+      })
+      .filter(item => item.total > 0)
+      .sort((a, b) => {
+        return (
+          +a.done - +b.done ||
+          +b.category.showProgress - +a.category.showProgress ||
+          a.category.id - b.category.id
+        )
+      })
   }
 }
 
-export { StatModule, STAT_MODULE, IntervalItem }
+export { StatModule, STAT_MODULE, StatItem }

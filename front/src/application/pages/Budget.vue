@@ -29,12 +29,12 @@ import { Interval } from '@common/model/interval'
 
 import { intervalService } from '../services'
 import { intervalModule, statModule } from '../store'
-import { IntervalItem } from '../store/StatModule'
+import { StatItem } from '../store/StatModule'
 
 @Component
 export default class Budget extends Vue {
   // TODO: fix, save to data
-  private get items(): IntervalItem[] {
+  private get items(): StatItem[] {
     return statModule.items
   }
 

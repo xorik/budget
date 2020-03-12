@@ -22,9 +22,7 @@ export class CategoriesController {
 
   @Get()
   public async getList(): Promise<CategoryEntity[]> {
-    return this.categoryRepository.find({
-      order: { showProgress: 'DESC', id: 'ASC' },
-    })
+    return this.categoryRepository.find()
   }
 
   @Post()

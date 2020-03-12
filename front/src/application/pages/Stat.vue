@@ -20,6 +20,7 @@
       :total="item.total"
       :pos="progress"
       :showProgress="item.category.showProgress"
+      :max="max"
     )
 
     AddTransactionButton
@@ -47,6 +48,14 @@ export default class Stat extends Vue {
       current: Math.round(progressItems.reduce((sum, x) => x.current + sum, 0)),
       total: progressItems.reduce((sum, x) => x.total + sum, 0),
     }
+  }
+
+  private get max(): number {
+    return this.items.reduce(
+      (prev, cur) =>
+        cur.category.showProgress ? Math.max(prev, cur.total) : prev,
+      0,
+    )
   }
 
   private get progress(): number {

@@ -10,7 +10,7 @@
       h5.col.col-auto.mb-0.text-right(:class="textClass") {{ current }}€
     .row.align-items-center(v-if="showProgress")
       .col.col-10
-        Progress(:value="percent" :current="pos" :bg="bg")
+        Progress(:value="percent" :current="pos" :bg="bg" :style="{width: `${width}%`}")
       .col.text-right.text-muted {{ total }}€
 </template>
 
@@ -42,6 +42,9 @@ export default class BudgetProgress extends Vue {
   @Prop({ required: false, default: true })
   private showProgress!: boolean
 
+  @Prop({ required: false, default: null })
+  private max!: number | null
+
   private get done(): boolean {
     return !this.showProgress && this.percent > 90
   }
@@ -56,6 +59,16 @@ export default class BudgetProgress extends Vue {
     }
 
     return (this.current / this.total) * 100
+  }
+
+  private get width(): number {
+    if (this.max === null || this.max === 0) {
+      return 100
+    } else if (!this.showProgress) {
+      return 0
+    }
+
+    return Math.pow(this.total / this.max, 0.7) * 100
   }
 }
 </script>
